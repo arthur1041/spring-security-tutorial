@@ -1,4 +1,4 @@
-package com.artcruz.securitywithspring.security;
+package com.artcruz.securitywithspring.security.enums;
 
 public enum ApplicationUserPermission {
 

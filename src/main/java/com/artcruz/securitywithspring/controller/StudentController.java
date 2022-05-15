@@ -18,7 +18,8 @@ public class StudentController {
       new Student(1, "Lavoisier"),
       new Student(2, "Gauss"),
       new Student(3, "Newton"),
-      new Student(4, "Kepler"));
+      new Student(4, "Kepler"),
+      new Student(5, "Anna Smith"));
 
   @GetMapping(path = "/{studentId}")
   public Student getStudent(@PathVariable("studentId") Integer studentId) {

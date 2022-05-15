@@ -1,10 +1,10 @@
-package com.artcruz.securitywithspring.security;
+package com.artcruz.securitywithspring.security.enums;
+
+import static com.artcruz.securitywithspring.security.enums.ApplicationUserPermission.*;
 
 import java.util.Set;
 
 import com.google.common.collect.Sets;
-
-import static com.artcruz.securitywithspring.security.ApplicationUserPermission.*;
 
 public enum ApplicationUserRole {
   STUDENT(Sets.newHashSet()),
