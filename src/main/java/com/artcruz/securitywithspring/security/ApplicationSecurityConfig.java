@@ -14,6 +14,8 @@ public class ApplicationSecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
         .authorizeRequests()
+        .antMatchers("/", "index", "/css/*", "/js/*")
+        .permitAll()
         .anyRequest()
         .authenticated()
         .and()
