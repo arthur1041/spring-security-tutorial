@@ -1,7 +1,5 @@
 package com.artcruz.securitywithspring.security;
 
-import com.artcruz.securitywithspring.security.enums.ApplicationUserRole;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import static com.artcruz.securitywithspring.security.enums.ApplicationUserRole.*;
-
 
 @Configuration
 @EnableWebSecurity
@@ -40,18 +37,24 @@ public class ApplicationSecurityConfig {
   @Bean
   public UserDetailsService userDetailsService() {
     UserDetails annaSmithUser = User.builder()
-      .username("annasmith")
-      .password(passwordEncoder.encode("12345678"))
-      .roles(STUDENT.name())
-      .build();
+        .username("annasmith")
+        .password(passwordEncoder.encode("12345678"))
+        .roles(STUDENT.name())
+        .build();
 
     UserDetails lindaUser = User.builder()
-      .username("linda")
-      .password(passwordEncoder.encode("12345678"))
-      .roles(ADMIN.name())
-      .build();
+        .username("linda")
+        .password(passwordEncoder.encode("12345678"))
+        .roles(ADMIN.name())
+        .build();
 
-    return new InMemoryUserDetailsManager(annaSmithUser, lindaUser);
+    UserDetails tomUser = User.builder()
+        .username("tom")
+        .password(passwordEncoder.encode("12345678"))
+        .roles(ADMINTRAINEE.name())
+        .build();
+
+    return new InMemoryUserDetailsManager(annaSmithUser, lindaUser, tomUser);
   }
 
 }
