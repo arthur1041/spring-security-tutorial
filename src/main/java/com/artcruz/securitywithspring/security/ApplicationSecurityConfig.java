@@ -16,12 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class ApplicationSecurityConfig {
 
-  private final PasswordEncoder passwordEncoder;
-
   @Autowired
-  public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
-    this.passwordEncoder = passwordEncoder;
-  }
+  private PasswordEncoder passwordEncoder;
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -42,10 +38,16 @@ public class ApplicationSecurityConfig {
     UserDetails annaSmithUser = User.builder()
       .username("annasmith")
       .password(passwordEncoder.encode("12345678"))
-      .roles("Student")
+      .roles(ApplicationUserRole.STUDENT.name())
       .build();
 
-    return new InMemoryUserDetailsManager(annaSmithUser);
+    UserDetails lindaUser = User.builder()
+      .username("linda")
+      .password(passwordEncoder.encode("12345678"))
+      .roles(ApplicationUserRole.ADMIN.name())
+      .build();
+
+    return new InMemoryUserDetailsManager(annaSmithUser, lindaUser);
   }
 
 }
